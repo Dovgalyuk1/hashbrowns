@@ -553,6 +553,14 @@ document.addEventListener("visibilitychange",function(){
   else if(!document.hidden&&MU.on&&!MU.t){ var c=ac(); if(c){ MU.next=c.currentTime+.1; MU.t=setInterval(musSchedule,90); } }
 });
 document.getElementById("musBtn").addEventListener("click",function(){ musOn(!MU.on); });
+/* never keep hashing in a tab nobody is looking at */
+document.addEventListener("visibilitychange",function(){
+  if(document.hidden){
+    if(FRY.on){ FRY.wasOn=true; send({cmd:"stop"}); sizzleSet(0); }
+  }else if(FRY.wasOn){
+    FRY.wasOn=false; if(FRY.on){ send({cmd:"start"}); sizzleSet(.04); }
+  }
+});
 document.getElementById("sfxBtn").addEventListener("click",function(){
   sfxOn=!sfxOn; this.dataset.on=sfxOn?"1":"0";
   if(!sfxOn) sizzleSet(0); else if(FRY.on) sizzleSet(.05+Math.min(.1,FRY.rate/900000));
@@ -878,7 +886,7 @@ function serve(h){
     var k=0;
     (function fly(){
       k+=.06; PAN.fly=k;
-      if(k<1){ requestAnimationFrame(fly); }
+      if(k<1){ setTimeout(fly,16); }
       else{
         PAN.cur=null; PAN.fly=0; PAN.busy=false;
         plate(sp,idx); unlockCard(idx); inspect(idx);
