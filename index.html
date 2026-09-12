@@ -113,13 +113,13 @@ p.lore{color:var(--dim);margin:0 0 13px;max-width:36em}
 
 /* ---------- fryer ---------- */
 #fryer{padding:50px 0 56px;background:linear-gradient(180deg,#1d1412,#241a17)}
-.rig{display:grid;grid-template-columns:222px 1fr 268px;gap:16px;align-items:start}
+.rig{display:grid;grid-template-columns:252px 1fr 292px;gap:16px;align-items:start}
 .panel{background:var(--iron2);border:3px solid #000;box-shadow:inset 2px 2px 0 #4a3831,inset -2px -2px 0 #000,5px 5px 0 rgba(0,0,0,.45);padding:14px;min-width:0}
 .panel h3{font-size:9px;color:var(--oil2);margin:0 0 12px;letter-spacing:.08em}
 .stat{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px dashed #4a3831;padding:8px 0}
-.stat u{text-decoration:none;font-size:12px;color:#8d7466;letter-spacing:.06em;text-transform:uppercase}
-.stat b{font-family:var(--pix);font-size:11px;color:var(--oil)}
-.stat b.sm{font-size:9px}
+.stat u{text-decoration:none;font-size:11px;color:#8d7466;letter-spacing:.02em;text-transform:uppercase}
+.stat b{font-family:var(--pix);font-size:9px;color:var(--oil);white-space:nowrap}
+.stat b.sm{font-size:8px}
 .gauge{height:14px;background:#120c0a;border:2px solid #000;box-shadow:inset 1px 1px 0 #4a3831;margin-top:12px;overflow:hidden}
 .gauge i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--oil) 0 6px,var(--oil2) 6px 12px);transition:width .25s}
 .panbox{background:var(--iron);border:3px solid #000;box-shadow:inset 2px 2px 0 #3b2c26,5px 5px 0 rgba(0,0,0,.45);padding:14px;text-align:center;min-width:0}
@@ -745,7 +745,7 @@ function drawPan(ts){
     if(PAN.fly>0){
       var k=Math.min(1,PAN.fly);
       px.globalAlpha=1-k;
-      px.translate(S*.34*k, -S*.30*k); px.scale(1-.45*k,1-.45*k);
+      px.translate(S*.26*k, -S*.22*k); px.scale(1-.5*k,1-.5*k);
     }
     drawBrown(px,S,PAN.cur,ts);
     px.restore();
